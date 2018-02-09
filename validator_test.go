@@ -4,6 +4,16 @@ import (
 	"testing"
 )
 
+type mockEmptyTag struct {
+	ID string `validate:"-"`
+}
+
+func instEmptyTag(id string) mockEmptyTag {
+	return mockEmptyTag{
+		ID: id,
+	}
+}
+
 func testValidation(t *testing.T, m interface{}, length int, expected string) {
 	errs := validateStruct(m)
 
@@ -26,4 +36,10 @@ func testValidationFail(t *testing.T, m interface{}, expected string) {
 
 func testValidationPass(t *testing.T, m interface{}) {
 	testValidation(t, m, 0, "")
+}
+
+func TestEmptyTag(t *testing.T) {
+	m := instEmptyTag("mock_id")
+
+	testValidationPass(t, m)
 }
