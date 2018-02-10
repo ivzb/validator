@@ -15,7 +15,7 @@ func instEmptyTag(id string) mockEmptyTag {
 }
 
 func testValidation(t *testing.T, m interface{}, length int, expected string) {
-	errs := validateStruct(m)
+	errs := ValidateStruct(m)
 
 	if len(errs) != length {
 		t.Fatalf("expected %d validation error, got %d", length, len(errs))

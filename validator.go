@@ -54,7 +54,7 @@ func mapToValidator(validation string) Validator {
 }
 
 // Performs actual data validation using validator definitions on the struct
-func validateStruct(s interface{}) []error {
+func ValidateStruct(s interface{}) []error {
 	errs := []error{}
 
 	// ValueOf returns a Value representing the run-time data
