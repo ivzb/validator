@@ -13,7 +13,7 @@ func (v IDValidator) Validate(val interface{}) (bool, error) {
 	num := val.(int)
 
 	if num <= 0 {
-		return false, errors.New("should be greather than 0")
+		return false, errors.New("should be valid id")
 	}
 
 	return true, nil
