@@ -5,7 +5,7 @@ import (
 )
 
 type mockEmptyTag struct {
-	ID string `validate:"-"`
+	ID string `json:"id" validate:"-"`
 }
 
 func instEmptyTag(id string) mockEmptyTag {

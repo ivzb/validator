@@ -3,7 +3,7 @@ package validator
 import "testing"
 
 type mockEmail struct {
-	Email string `validate:"email"`
+	Email string `json:"email" validate:"email"`
 }
 
 func instEmail(email string) mockEmail {
@@ -14,14 +14,14 @@ func instEmail(email string) mockEmail {
 
 func TestEmail_Blank(t *testing.T) {
 	m := instEmail("")
-	expected := "Email cannot be blank"
+	expected := "email cannot be blank"
 
 	testValidationFail(t, m, expected)
 }
 
 func TestString_InvalidEmail(t *testing.T) {
 	m := instEmail("a")
-	expected := "Email is not a valid"
+	expected := "email is not a valid"
 
 	testValidationFail(t, m, expected)
 }

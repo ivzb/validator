@@ -7,7 +7,8 @@ import (
 )
 
 // Name of the struct tag used in examples.
-const tagName = "validate"
+const tagValidation = "validate"
+const tagJSON = "json"
 
 // Generic data validator.
 type Validator interface {
@@ -62,17 +63,18 @@ func ValidateStruct(s interface{}) []error {
 
 	for i := 0; i < v.NumField(); i++ {
 		// Get the field tag value
-		tag := v.Type().Field(i).Tag.Get(tagName)
+		tag := v.Type().Field(i).Tag
+		validation := tag.Get(tagValidation)
 
 		// Skip if tag is not defined or ignored
-		if tag == "" || tag == "-" {
+		if validation == "" || validation == "-" {
 			continue
 		}
 
-		// Get a validators that corresponds to a tag
-		validators := getValidatorsFromTag(tag)
+		// Get a validators that corresponds to tag's validation
+		validators := getValidatorsFromTag(validation)
 		field := v.Field(i).Interface()
-		fieldName := v.Type().Field(i).Name
+		fieldName := tag.Get(tagJSON)
 
 		for _, validator := range validators {
 			// Perform validation

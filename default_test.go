@@ -3,7 +3,7 @@ package validator
 import "testing"
 
 type mockDefault struct {
-	ID string `validate:"non_existing_validation_tag"`
+	ID string `json:"id" validate:"non_existing_validation_tag"`
 }
 
 func instDefault(id string) mockDefault {
